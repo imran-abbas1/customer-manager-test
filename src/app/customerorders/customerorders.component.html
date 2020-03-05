@@ -3,8 +3,11 @@
 </p>
 <div class="cust-order">
   <div class="order-details">
-    <div *ngFor="let products of custOrder.product.length">
-    <p></p>
+    <p>Order Id- {{custOrder.orderId}}</p>
+    <p> Customer Id:- {{custOrder.email}} || Total Bill Amount- {{custOrder.amount}}</p>
+    <div *ngFor="let products of custOrder.product">
+      <p>Product Name:- {{products.productName}} || Product Price:- {{products.productPrice}}</p>
+    </div>
   </div>
   </div>
-</div>
+

@@ -24,26 +24,29 @@ import { LoadingspinnerComponent } from './loadingspinner/loadingspinner.compone
 import {CustomersResolverService} from './customers-resolver.service';
 import {OrdersResolverService} from './orders-resolver.service';
 import {AuthInterceptorService} from './auth/auth-interceptor.service';
+import {AuthGuard} from './auth/auth.guard';
 
 
 
 
 const approutes: Routes = [
-  {path: '', pathMatch: 'full', component: AboutComponent},
-  {path: 'customer', component: CustomerComponent, resolve: [CustomersResolverService]},
-  {path: 'customer/:id', component: CustomerlistComponent, children: [
-      {path: 'details', component: CustomerdetailsComponent},
-      {path: 'orders', component: CustomerordersComponent, resolve: [OrdersResolverService]},
-      {path: 'edit', component: EditcustomerComponent},
-      {path: '', pathMatch: 'full', redirectTo: 'details'}
+  {path: '', pathMatch: 'full', redirectTo: 'customer'},
+  {path: 'customer', component: CustomerComponent, canActivate: [AuthGuard], resolve: [CustomersResolverService],
+    children: [
+      {path: ':id', component: CustomerlistComponent,
+        children: [
+          {path: '', pathMatch: 'full', redirectTo: 'details'},
+          {path: 'details', component: CustomerdetailsComponent},
+          {path: 'orders', component: CustomerordersComponent, resolve: [OrdersResolverService]},
+          {path: 'edit', component: EditcustomerComponent}
+        ]}
     ]},
-  {path: 'order', component: OrderComponent, resolve: [OrdersResolverService]},
+  {path: 'order', component: OrderComponent, canActivate: [AuthGuard], resolve: [OrdersResolverService]},
   {path: 'about', component: AboutComponent},
   {path: 'signup', component: AuthComponent, resolve: [CustomersResolverService]},
   {path: 'logout', component: LogoutComponent},
-  {path: 'new-customer', component: SignupComponent, resolve: [CustomersResolverService]}
-  ];
-
+  {path: 'new-customer', component: SignupComponent, canActivate: [AuthGuard], resolve: [CustomersResolverService]}
+];
 @NgModule({
   declarations: [
     AppComponent,

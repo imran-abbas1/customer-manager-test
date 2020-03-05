@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 // import {User} from '../signup/signup.component';
 import {Subject, Subscription} from 'rxjs';
 import {CustService} from '../custservice.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {Customer} from '../customer.model';
 import {DataStorageService} from '../data-storage.service';
@@ -22,7 +22,8 @@ export class CustomerComponent implements OnInit {
 //  dataSource: MatTableDataSource<User[]>;
  // displayedColumns: string[] = ['fname', 'lname', 'address', 'city', 'state', 'ordertotal'];
   constructor(private custService: CustService, private router: Router,
-              private dataStorageService: DataStorageService, private authService: AuthService) {
+              private dataStorageService: DataStorageService, private authService: AuthService,
+              private route: ActivatedRoute) {
 
     // Assign the data to the data source for the table to render
     /*this.dataSource = new MatTableDataSource();*/

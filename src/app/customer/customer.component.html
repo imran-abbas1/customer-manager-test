@@ -1,3 +1,4 @@
+<div *ngIf="route.children.length === 0">
 <mat-card>
   <mat-label class="heading" style="padding-right: 20px; font-weight: bold; font-size: larger">Customers</mat-label>
   <span style="padding-right: 20px; color: dodgerblue">
@@ -20,6 +21,7 @@
         </ul>
       </mat-card>-->
 {{search}}
+
 <p>List of Customers</p>
 <div *ngIf="!isSearched">
 <div *ngIf="isCardView">
@@ -27,7 +29,7 @@
     <div class="card">
       <img src="../../assets/img_avatar3.png" alt="Avatar" style="width:100%">
       <div class="container">
-        <a style="cursor:pointer;" class="stretched-link"[routerLink]="['/customer', cust.email]"><h4><b>{{cust.fname}} {{cust.lname}}</b></h4></a>
+        <a style="cursor:pointer;" class="stretched-link" [routerLink]="['/customer', cust.email]"><h4><b>{{cust.fname}} {{cust.lname}}</b></h4></a>
         <p>{{cust.city}}</p>
       </div>
     </div>
@@ -44,7 +46,10 @@
       <p>{{searchedCustomer|json}}</p>
 </div>
 <p>Customer Works</p>
-
+  </div>
+</div>
+</div>
+<router-outlet></router-outlet>
 <!--
 <mat-tab-group>
   <mat-tab label="Card View">
