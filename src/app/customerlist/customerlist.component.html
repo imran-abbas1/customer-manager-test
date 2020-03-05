@@ -1,0 +1,15 @@
+<div>
+  <mat-card><b>Customer Information</b></mat-card>
+  <mat-divider></mat-divider>
+  <mat-chip-list>
+    <mat-chip><a style="cursor:pointer;" [routerLink]="['details']" routerLinkActive="active">Customer Details</a></mat-chip>
+    <mat-chip><a style="cursor:pointer;" [routerLink]="['orders']" routerLinkActive="active">Customer Orders</a></mat-chip>
+    <mat-chip><a style="cursor:pointer;" [routerLink]="['edit']" routerLinkActive="active">Edit Customer</a></mat-chip>
+  </mat-chip-list>
+  <router-outlet></router-outlet>
+  <!--<app-customerdetails [cust]="customer"></app-customerdetails>
+  <app-customerorders [cust]="customer"></app-customerorders>
+  <app-editcustomer [cust]="customer"></app-editcustomer>-->
+</div>
+
+

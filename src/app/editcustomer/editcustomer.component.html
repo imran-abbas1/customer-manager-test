@@ -1,0 +1,50 @@
+<p>
+
+</p>
+
+<div class="RegisterForm">
+  <form [formGroup]="updateForm"
+        (ngSubmit)="update()">
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="Steve" formControlName="fname" id="fname" class="form-control" required>
+      <!--  <mat-hint>Enter First Name</mat-hint> -->
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="Balmer" formControlName="lname" id="lname" class="form-control" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="email" id="email" class="form-control" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Address</mat-label>
+      <input matInput placeholder="22nd Street Vth Avenue" formControlName="address" id="address" class="form-control" required>
+      <mat-hint>Enter Address</mat-hint>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>City</mat-label>
+      <input matInput placeholder="Parlin City" formControlName="city" id="city" class="form-control" required>
+      <mat-hint>Enter City Name</mat-hint>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>State</mat-label>
+      <input matInput placeholder="New Jersey" formControlName="state" id="state" class="form-control" required>
+      <mat-hint>Enter State Name</mat-hint>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input matInput placeholder="9999999999" formControlName="phoneNumber" id="phoneNumber" class="form-control" required>
+      <mat-hint>Enter Phone Name</mat-hint>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button [disabled]="updateForm.invalid">Update Customer Details</button>
+  </form>
+</div>

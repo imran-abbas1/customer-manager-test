@@ -1,0 +1,31 @@
+<div class="div">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <div class="alert alert-danger" *ngIf="error">
+      <p>{{error}}</p>
+    </div>
+    <div *ngIf="isLoading" style="text-align: center; margin: auto">
+      <app-loadingspinner></app-loadingspinner>
+    </div>
+    <form [formGroup]="registerForm"
+          (ngSubmit)="register()" *ngIf="!isLoading">
+      <div id="heading" style="font-weight: bold; font-size: large">Sign up Form</div>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+      <input matInput placeholder="Enter email" formControlName="email" id="email" class="form-control" email required/>
+      <mat-hint>ajay@gmail.com</mat-hint>
+        <mat-error *ngIf="registerForm.get('email').invalid"> {{ getEmailErrorMessage()}} </mat-error>
+    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+      <input matInput type="password" placeholder="Enter password" formControlName="password" id="password" class="form-control" required/>
+        <mat-hint>Minimum password length should be 6</mat-hint>
+        <mat-error *ngIf="registerForm.get('password').invalid">{{getPasswordErrorMessage()}}</mat-error>
+      </mat-form-field>
+        <br>
+        <div class="button" style="float: left">
+      <button mat-raised-button [disabled]="!registerForm.valid" type="submit"> {{ isLogin ? 'Login' : 'Sign Up' }}</button> |
+      <button mat-raised-button type="button" (click)="onSwitchMode()">Switch to {{ isLogin ? 'Sign Up' : 'Login' }}</button>
+        </div>
+    </form>
+  </div>
+</div>

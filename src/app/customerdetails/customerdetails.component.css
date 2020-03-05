@@ -1,0 +1,10 @@
+card {
+  margin: auto;
+}
+agm-map {
+  height: 400px;
+}
+
+button, input{
+  margin-left: 10px
+}

@@ -1,0 +1,113 @@
+<mat-card>
+  <mat-label class="heading" style="padding-right: 20px; font-weight: bold; font-size: larger">Customers</mat-label>
+  <span style="padding-right: 20px; color: dodgerblue">
+  <a style="cursor:pointer;" (click)="onAddCustomer()">New Customer</a>
+  </span>
+  <input type="text" name="search" id="search" [(ngModel)]="search" placeholder="Search Customer">
+  <a (click)="onSearch(search)" style= "cursor:pointer">Search</a>||
+  <a (click)="onClear()" style= "cursor:pointer">Clear</a>
+</mat-card>
+<mat-divider [inset]="true"></mat-divider>
+
+     <!-- <mat-card>
+        <ul>
+      &lt;!&ndash;<li><a style="cursor:pointer;" (click)="onCardView()">Card View</a></li>&ndash;&gt;
+     &lt;!&ndash; <li><a style="cursor:pointer;" (click)="onListView()">List View</a></li>&ndash;&gt;
+      <li><a style="cursor:pointer;" (click)="onAddCustomer()">New Customer</a></li>
+      <li><input type="text" name="search" id="search" [(ngModel)]="search">
+        <a (click)="onSearch(search)" style= "cursor:pointer">Search</a>||
+        <a (click)="onClear()" style= "cursor:pointer">Clear</a></li>
+        </ul>
+      </mat-card>-->
+{{search}}
+<p>List of Customers</p>
+<div *ngIf="!isSearched">
+<div *ngIf="isCardView">
+  <div *ngFor="let cust of currentCustomers">
+    <div class="card">
+      <img src="../../assets/img_avatar3.png" alt="Avatar" style="width:100%">
+      <div class="container">
+        <a style="cursor:pointer;" class="stretched-link"[routerLink]="['/customer', cust.email]"><h4><b>{{cust.fname}} {{cust.lname}}</b></h4></a>
+        <p>{{cust.city}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!isCardView">
+</div>
+</div>
+<div *ngIf="isSearched">
+  <div class="card">
+    <img src="../../assets/img_avatar3.png" alt="Avatar" style="width:100%">
+    <div class="container">
+      <p> The Customer you searched for</p>
+      <p>{{searchedCustomer|json}}</p>
+</div>
+<p>Customer Works</p>
+
+<!--
+<mat-tab-group>
+  <mat-tab label="Card View">
+    <nav mat-tab-nav-bar>
+      <a style="cursor:pointer;" (click)="onCardView()">
+      </a>
+    </nav>
+  </mat-tab>
+  <mat-tab label="List View">
+    <nav mat-tab-nav-bar>
+      <a style="cursor:pointer;" (click)="onListView()">
+      </a>
+    </nav>
+  </mat-tab>
+  <mat-tab label="Add Customer">
+    <nav mat-tab-nav-bar>
+      <a style="cursor:pointer;" (click)="onAddCustomer()">
+      </a>
+    </nav>
+  </mat-tab>
+</mat-tab-group> -->
+
+
+    <!--
+    <mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia">
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="progress">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+      <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="color">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Color </th>
+      <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+    </table> -->
+
+<!-- <button mat-raised-button (click)="onRemoveCustomer()">Remove Customer</button> -->
