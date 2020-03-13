@@ -2,12 +2,13 @@ import {AfterContentInit, Component, Input, OnDestroy, OnInit, ViewChild} from '
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {ActivatedRoute, ParamMap, Params} from '@angular/router';
+import {ActivatedRoute, ParamMap, Params, Router} from '@angular/router';
 // import {User} from '../signup/signup.component';
-import {CustService} from '../custservice.service';
+import {CustService} from '../../services/custservice.service';
 import {switchMap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {Customer} from '../customer.model';
+import {Customer} from '../../customer.model';
+import {DataStorageService} from '../../services/data-storage.service';
 // import {MapInfoWindow, MapMarker, GoogleMap} from '@angular/google-maps';
 
 @Component({
@@ -16,12 +17,28 @@ import {Customer} from '../customer.model';
   styleUrls: ['./customerdetails.component.css']
 })
 export class CustomerdetailsComponent implements OnInit {
-  cust: Customer;
-  constructor(private customerService: CustService) {
+   cust: Customer;
+  // @Input() customer: Customer;
+  constructor(private customerService: CustService,
+              private dataStorageService: DataStorageService, private router: Router) {
   }
 
   ngOnInit() {
-    this.cust = this.customerService.SelectedCustomer;
+     this.cust = this.customerService.SelectedCustomer;
+     console.log(this.cust);
+  }
+
+  editCustomer() {
+    this.deleteCustomer();
+    this.router.navigate(['new-customer']);
+  }
+
+  deleteCustomer() {
+    this.dataStorageService.deleteCustomer(this.cust.key).then(response => {
+      console.log(response);
+    }).catch(err => console.log(err));
+    console.log('deleted');
+    this.router.navigate(['/customer']);
   }
 }
   /* @ViewChild(GoogleMap) map: GoogleMap

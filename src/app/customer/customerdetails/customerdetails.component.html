@@ -1,11 +1,31 @@
-<div class="card">
-  <img src="../../assets/img_avatar3.png" alt="Avatar" style="width:10%">
-  <div class="container">
-    Customer Name:- {{cust.fname}} {{cust.lname}}
-    <br>  Email:- {{cust.email}}
-    <br>  Address:- {{cust.address}}, {{cust.city}} ,{{cust.state}}
-    <br> Contact Number:- {{cust.phoneNumber}}
+<!--
+<div *ngIf="customer">
+  <div>
+    <label>First Name: </label> {{customer.fname}}
   </div>
+  <div>
+    <label>Email: </label> {{customer.email}}
+  </div>
+  <button (click)='deleteCustomer()'>Delete</button>
+
+  <hr/>
+</div>
+-->
+
+<div class="row">
+  <div class="column">
+<div class="card">
+  <img src="../../../assets/img_avatar3.png" alt="Avatar" style="width:100%">
+  <div class="container">
+    <div> {{cust.fname}} {{cust.lname}} </div>
+    <div>  Email:- {{cust.email}} </div>
+    <div>  Address:- {{cust.address}}, {{cust.city}} ,{{cust.state}} </div>
+    <div> Mob:- {{cust.phoneNumber}} </div>
+    <button (click)='deleteCustomer()'>Delete</button>
+    <button (click)='editCustomer()'>Edit Customer Details</button>
+  </div>
+</div>
+</div>
 </div>
 
 

@@ -2,12 +2,13 @@
   <ul>
     <li><i class="material-icons" style="font-size:40px;color:lightblue;text-shadow:2px 2px 4px #000000; padding-top: 3px; padding-left: 10px">cloud</i></li>
     <li class="brand" routerLinkActive="active"><a [routerLink]="['']">Customer Manager Dashboard</a></li>
-    <li routerLinkActive="active" *ngIf="isAuthenticated"><a [routerLink]="['/customer']">Customer</a></li>
-    <li routerLinkActive="active"  *ngIf="isAuthenticated"><a [routerLink]="['/order']">Order</a></li>
+    <li routerLinkActive="active" *ngIf="isLoggedIn$ | async "><a [routerLink]="['/customer']">Customer</a></li>
+    <li routerLinkActive="active"  *ngIf="isLoggedIn$ | async "><a [routerLink]="['/order']">Order</a></li>
     <li><a [routerLink]="['/about']" routerLinkActive="active">About</a></li>
-    <li class="signinClass" routerLinkActive="active" *ngIf="!isAuthenticated"><a [routerLink]="['/signup']">Sign In</a></li>
-    <li class="usernameClass" routerLinkActive="active" *ngIf="isAuthenticated" style="padding-right: 15px; padding-bottom: 15px"><a></a> {{username}}</li>
-    <li class="logoutClass" routerLinkActive="active" *ngIf="isAuthenticated"><a [routerLink]="['/logout']">Log out</a></li>
+    <!--{{isAuthenticated}}-->
+    <li class="signinClass" routerLinkActive="active" *ngIf="(!isAuthenticated)"><a [routerLink]="['/login']">Sign In</a></li>
+    <li class="usernameClass" routerLinkActive="active" *ngIf="isLoggedIn$ | async " style="padding-right: 15px;"><a></a> {{username}}</li>
+    <li class="logoutClass" routerLinkActive="active" *ngIf="isLoggedIn$ | async "><a [routerLink]="['/logout']">Log out</a></li>
   </ul>
 </div>
 <router-outlet></router-outlet>

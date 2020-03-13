@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import {CustService} from '../custservice.service';
+import {CustService} from '../../services/custservice.service';
 // import {User} from '../signup/signup.component';
 
 @Component({
@@ -17,7 +17,10 @@ export class CustomerlistComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.useremail = params.id;
       this.custService.SelectedCustomer = this.custService.getCustomer(this.useremail);
+     /* console.log(this.custService.getCustomers());
       console.log(this.useremail);
+      console.log(this.custService.selectedCustomer);
+    */
     });
     /*this.route.params.subscribe((params: Params) => {
       this.useremail = params.id;

@@ -1,0 +1,85 @@
+<div>All Orders</div>
+<mat-divider></mat-divider>
+
+<button mat-raised-button id="logout-button" (click)="openModal()">Delete All Orders</button>
+
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+</mat-form-field>
+
+<mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource" matSort>
+
+  <ng-container matColumnDef="OrderId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Order Id</mat-header-cell>
+    <mat-cell *matCellDef="let lesson">{{lesson.orderId}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="CustomerId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Customer Id</mat-header-cell>
+    <mat-cell class="description-cell"
+              *matCellDef="let lesson">{{lesson.email}}</mat-cell>
+
+  </ng-container>
+
+  <ng-container matColumnDef="Amount">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
+    <mat-cell class="duration-cell"
+              *matCellDef="let lesson">{{lesson.amount}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="Details">
+    <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
+     <mat-cell *matCellDef="let lesson">
+      <button mat-icon-button color="accent" (click)="redirectToDetails(lesson.email)">
+        <mat-icon class="mat-18">system_update</mat-icon>
+      </button>
+     </mat-cell>
+  </ng-container>
+
+  <!--<ng-container matColumnDef="Update">
+    <mat-header-cell *matHeaderCellDef> Update </mat-header-cell>
+    <mat-cell *matCellDef="let lesson">
+      <button mat-icon-button color="accent" (click)="redirectToUpdate(lesson.email)">
+        <mat-icon class="mat-18">system_update</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>-->
+
+  <ng-container matColumnDef="Delete">
+    <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+    <mat-cell *matCellDef="let lesson">
+      <button mat-icon-button color="warn" (click)="redirectToDelete(lesson.email)">
+        <mat-icon class="mat-18">delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>
+
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons ></mat-paginator>
+<!--<div class="row">
+  <div *ngFor="let order of orders">
+
+  <div class="column">
+    <div class="card">
+  <div>Order Id- {{order.orderId}}</div>
+      <div> Customer Id:-
+        <a style="cursor:pointer;" class="stretched-link" [routerLink]="['/customer', order.email]"><h4><b>{{order.email}}</b></h4></a>
+      </div>
+  <div>Total Bill Amount- {{order.amount}}</div>
+  <div>Product Name || Product Price</div>
+  <div *ngFor="let product of order.product">
+    <div>{{product.productName}} || {{product.productPrice}}</div>
+  </div>
+  <mat-divider></mat-divider>
+</div>
+    </div>
+  </div>
+</div>-->
+<router-outlet></router-outlet>

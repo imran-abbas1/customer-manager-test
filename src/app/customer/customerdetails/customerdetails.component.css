@@ -1,3 +1,5 @@
+
+
 * {
   box-sizing: border-box;
 }
@@ -9,12 +11,8 @@ body {
 /* Float four columns side by side */
 .column {
   float: left;
-  width: 25%;
+  width: 45%;
   padding: 0 10px;
-}
-
-.column searched {
-  width: 35%;
 }
 
 /* Remove extra left and right margins, due to padding in columns */
@@ -43,3 +41,4 @@ body {
     margin-bottom: 20px;
   }
 }
+

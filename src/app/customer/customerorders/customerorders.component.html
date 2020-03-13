@@ -1,0 +1,30 @@
+<p>
+  customerorders works!
+</p>
+
+<div *ngIf="!custOrder">
+  No Order Available for this Customer
+</div>
+
+<div *ngIf="custOrder">
+  <div>Total No. of Orders for this customer {{custOrder.length}}</div>
+<div class="row">
+  <div *ngFor="let customerOrder of custOrder; let i=index">
+  <div class="column">
+    <div class="card">
+<div class="cust-order">
+  <div class="order-details">
+    <div>Order Id- {{customerOrder.orderId}}</div>
+    <div> Customer Id:- {{customerOrder.email}} </div>
+    <div>Total Bill Amount- {{customerOrder.amount}}</div>
+    <div *ngFor="let products of custOrder[0].product">
+      <div>Product Name:- {{products.productName}} </div>
+      <div>Product Price:- {{products.productPrice}}</div>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>

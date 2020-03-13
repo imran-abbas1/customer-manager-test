@@ -10,6 +10,32 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-analytics.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyB1ST79-vsmh5VabQGQ7H58SjctBska0Fk",
+      authDomain: "sampleproject-c0ccb.firebaseapp.com",
+      databaseURL: "https://sampleproject-c0ccb.firebaseio.com",
+      projectId: "sampleproject-c0ccb",
+      storageBucket: "sampleproject-c0ccb.appspot.com",
+      messagingSenderId: "261002601086",
+      appId: "1:261002601086:web:fade49e78c67bd7a89ae2f",
+      measurementId: "G-V9MJTZP8Q6"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
+
  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZeO64NMQj_XWNp_U_JfzLgVUz0K_v8KE"></script>-->
 </head>
 <body>

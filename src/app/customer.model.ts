@@ -6,6 +6,7 @@ export interface Customer {
   city: string;
   state: string;
   phoneNumber: number;
+  key?: string;
 }
 
   /*constructor(fname: string, lname: string, email: string, address: string, city: string, state: string) {

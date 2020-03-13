@@ -1,12 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 // import {User} from '../signup/signup.component';
 import {Subject, Subscription} from 'rxjs';
-import {CustService} from '../custservice.service';
+import {CustService} from '../services/custservice.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {Customer} from '../customer.model';
-import {DataStorageService} from '../data-storage.service';
+import {DataStorageService} from '../services/data-storage.service';
 import {AuthService} from '../auth/auth.service';
+import {map} from 'rxjs/operators';
+import {OrderService} from '../services/order.service';
 
 @Component({
   selector: 'app-customer',
@@ -19,28 +21,33 @@ export class CustomerComponent implements OnInit {
   search: string;
   isSearched = false;
   searchedCustomer: any;
+  count: number;
+  // customers: any;
 //  dataSource: MatTableDataSource<User[]>;
  // displayedColumns: string[] = ['fname', 'lname', 'address', 'city', 'state', 'ordertotal'];
   constructor(private custService: CustService, private router: Router,
               private dataStorageService: DataStorageService, private authService: AuthService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute, private orderService: OrderService) {
+    /*if (this.currentCustomers.length === 0) {
+      // this.fetchData();
+      // this.currentCustomers = this.custService.getCustomers();
+    }*/
 
     // Assign the data to the data source for the table to render
     /*this.dataSource = new MatTableDataSource();*/
    // this.dataSource = new MatTableDataSource(this.currentCustomers);
   }
   ngOnInit() {
-
-    this.fetchData();
-    this.currentCustomers = this.custService.getCustomers();
-
- //  this.dataSource = this.currentCustomers;
+    this.getCustomersList();
+     /* this.currentCustomers = this.custService.getCustomers();
+      console.log(this.currentCustomers);
+     */ //  this.dataSource = this.currentCustomers;
 
    // this.dataSource.paginator = this.paginator;
   //  this.dataSource.sort = this.sort;
 
   }
-  fetchData() {
+  /*fetchData() {
    this.dataStorageService.fetchCustomers().subscribe(response => {
      for (const key in response) {
        //  key instanceof Array
@@ -52,7 +59,7 @@ export class CustomerComponent implements OnInit {
        this.custService.setCustomers(this.currentCustomers);
      }
    });
-  }
+  }*/
   onCardView() {
     this.isCardView = true;
   }
@@ -73,6 +80,27 @@ export class CustomerComponent implements OnInit {
     this.search = '';
     this.isSearched = false;
 
+  }
+
+  getCustomersList() {
+    this.dataStorageService.getCustomersList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(customers => {
+      // this.custService.setCustomers(customers);
+      this.currentCustomers = customers;
+      console.log(this.currentCustomers);
+      this.custService.setCustomers(this.currentCustomers);
+      this.count = this.orderService.countOrders;
+      // console.log(this.custService.getCustomers());
+    });
+  }
+
+  deleteCustomers() {
+      this.dataStorageService.deleteAll().catch(err => console.log(err));
   }
 
   /*applyFilter(event: Event) {

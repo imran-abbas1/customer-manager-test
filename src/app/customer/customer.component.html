@@ -22,35 +22,60 @@
       </mat-card>-->
 {{search}}
 
+<!--
+  <h1>Customers</h1>
+  <div *ngFor="let customer of customers" style="width: 300px;">
+    <app-customerdetails [customer]='customer'></app-customerdetails>
+  </div>
+  <div style="margin-top:20px;">
+    <button type="button" class="button btn-danger" (click)='deleteCustomers()'>Delete All</button>
+  </div>
+-->
+
 <p>List of Customers</p>
+
+
+    <div class="row">
+      <div *ngFor="let cust of currentCustomers">
+      <div class="column">
 <div *ngIf="!isSearched">
 <div *ngIf="isCardView">
-  <div *ngFor="let cust of currentCustomers">
+
     <div class="card">
       <img src="../../assets/img_avatar3.png" alt="Avatar" style="width:100%">
       <div class="container">
         <a style="cursor:pointer;" class="stretched-link" [routerLink]="['/customer', cust.email]"><h4><b>{{cust.fname}} {{cust.lname}}</b></h4></a>
-        <p>{{cust.city}}</p>
+        <p>{{cust.city}} {{count|json}} </p>
       </div>
     </div>
   </div>
 </div>
-<div *ngIf="!isCardView">
-</div>
-</div>
-<div *ngIf="isSearched">
-  <div class="card">
-    <img src="../../assets/img_avatar3.png" alt="Avatar" style="width:100%">
-    <div class="container">
-      <p> The Customer you searched for</p>
-      <p>{{searchedCustomer|json}}</p>
-</div>
-<p>Customer Works</p>
+    </div>
   </div>
 </div>
+<div *ngIf="isSearched">
+  <div class="row">
+    <div class="column searched">
+      <div class="card">
+        <img src="../../assets/img_avatar3.png" alt="Avatar" style="width:100%">
+        <div class="container">
+          <div>Customer Name:- {{searchedCustomer[0].fname}} {{searchedCustomer[0].lname}} </div>
+          <div>  Email:- {{searchedCustomer[0].email}} </div>
+          <div>  Address:- {{searchedCustomer[0].address}}, {{searchedCustomer[0].city}} ,{{searchedCustomer[0].state}} </div>
+          <div> Contact Number:- {{searchedCustomer[0].phoneNumber}} </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
-<router-outlet></router-outlet>
-<!--
+</div>
+  <router-outlet></router-outlet>
+
+
+
+
+  <!--
 <mat-tab-group>
   <mat-tab label="Card View">
     <nav mat-tab-nav-bar>

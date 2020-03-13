@@ -1,9 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 // import {User} from '../signup/signup.component';
-import {CustService} from '../custservice.service';
-import {Customer} from '../customer.model';
+import {CustService} from '../../services/custservice.service';
+import {Customer} from '../../customer.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+// import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+
 
 @Component({
   selector: 'app-editcustomer',
@@ -14,7 +16,23 @@ export class EditcustomerComponent implements OnInit {
   cust: Customer;
   updateForm: FormGroup;
   user = {} as Customer;
-  constructor(private fb: FormBuilder, private router: Router, private customerService: CustService) {
+
+/*
+const config = {
+    apiKey: 'AIzaSyB1ST79-vsmh5VabQGQ7H58SjctBska0Fk',
+    authDomain: '<sampleproject-c0ccb>.firebaseapp.com',
+    projectId: '<sampleproject-c0ccb>',
+    databaseURL: 'https://<sampleproject-c0ccb>.firebaseio.com',
+  };
+if (!firebase.apps.length) {
+  firebase.initializeApp(config);
+}
+this.database = firebase.database();
+
+*/
+
+
+constructor(private fb: FormBuilder, private router: Router, private customerService: CustService) {
     this.updateForm = this.fb.group({
       fname: ['', Validators.required],
       lname: ['', Validators.required],
@@ -26,12 +44,12 @@ export class EditcustomerComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+ngOnInit() {
     this.cust = this.customerService.SelectedCustomer;
     console.log('this is the required customer');
     console.log(this.cust);
   }
-  update() {
+update() {
       console.log(this.updateForm.value);
       this.user.fname = this.updateForm.controls.fname.value;
       this.user.lname = this.updateForm.controls.lname.value;

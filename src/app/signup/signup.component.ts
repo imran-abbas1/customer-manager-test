@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 import {Router} from '@angular/router';
-import {CustService} from '../custservice.service';
+import {CustService} from '../services/custservice.service';
 import {Customer} from '../customer.model';
-import {DataStorageService} from '../data-storage.service';
+import {DataStorageService} from '../services/data-storage.service';
 
 @Component({
   selector: 'app-signup',

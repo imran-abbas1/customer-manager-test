@@ -1,0 +1,14 @@
+<div id="modal-content-wrapper">
+<header id="modal-header">
+  <h1 id="modal-title">Are you sure you want to<b> Delete All the Orders?</b></h1>
+  <mat-divider></mat-divider>
+</header>
+
+<section id="modal-body">
+  <p><b>Clicking Yes will delete all the orders. Remember this action is irreversible</b></p>
+</section>
+<footer id="modal-footer">
+  <button mat-raised-button id="modal-action-button" (click)="actionFunction()">Yes</button>
+  <button mat-raised-button id="modal-cancel-button" (click)="closeModal()">Go back</button>
+</footer>
+</div>
