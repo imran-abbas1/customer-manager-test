@@ -57,7 +57,7 @@ export class CustomerordersComponent implements OnInit {
       console.log(this.orders);
       this.orderService.setOrders(this.orders);
       this.cust = this.customerService.SelectedCustomer;
-      this.custOrder = this.orderService.getOrder(this.cust.email);
+      this.custOrder = this.orderService.getMyOrder(this.cust.email);
       this.orderService.countOrders = this.custOrder.length;
       // console.log(this.custService.getCustomers());
     });

@@ -81,6 +81,10 @@ export class OrderService {
    }
 
    getOrder(email: string) {
+     return this.order.find(o => o.email === email);
+   }
+
+   getMyOrder(email: string) {
      return this.order.filter(o => o.email === email);
    }
 

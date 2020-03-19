@@ -1,0 +1,36 @@
+<p>
+add-order works
+</p>
+
+<div class="AddOrderForm">
+  <form [formGroup]="addOrderForm"
+        (ngSubmit)="addOrder()">
+    <mat-form-field appearance="outline">
+      <mat-label>Order Id</mat-label>
+      <input matInput placeholder="***" formControlName="orderId" id="orderId" class="form-control" required>
+      <!--  <mat-hint>Enter First Name</mat-hint> -->
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput placeholder="user@abc.com" formControlName="email" id="email" class="form-control" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput placeholder="6540$" formControlName="amount" id="amount" class="form-control" required>
+    </mat-form-field>
+    <br>
+
+    <button mat-raised-button type="button" (click)="addProduct()">Add Product</button>
+    <div formArrayName="product" *ngFor="let newOrder of addOrderForm.get('product')['controls']; let i=index">
+      <div [formGroupName]="i">
+        <input formControlName="productName" placeholder="Item name">
+        <input formControlName="productPrice" placeholder="Item price">
+      </div>
+    </div>
+    <br>
+    <button mat-raised-button [disabled]="addOrderForm.invalid">Add New Order</button>
+  </form>
+</div>
+

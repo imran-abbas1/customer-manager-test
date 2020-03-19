@@ -1,7 +1,7 @@
 <div class="mat-tab-nav-bar">
   <ul>
     <li><i class="material-icons" style="font-size:40px;color:lightblue;text-shadow:2px 2px 4px #000000; padding-top: 3px; padding-left: 10px">cloud</i></li>
-    <li class="brand" routerLinkActive="active"><a [routerLink]="['']">Customer Manager Dashboard</a></li>
+    <li class="brand" routerLinkActive="active"><a [routerLink]="['/customer']">Customer Manager Dashboard</a></li>
     <li routerLinkActive="active" *ngIf="isLoggedIn$ | async "><a [routerLink]="['/customer']">Customer</a></li>
     <li routerLinkActive="active"  *ngIf="isLoggedIn$ | async "><a [routerLink]="['/order']">Order</a></li>
     <li><a [routerLink]="['/about']" routerLinkActive="active">About</a></li>

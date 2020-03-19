@@ -20,7 +20,7 @@ export class ModalComponent implements OnInit {
     alert('You have deleted all orders.');
 
     this.closeModal();
-    // this.deleteAllOrders();
+    this.deleteAllOrders();
   }
 
   // If the user clicks the cancel button a.k.a. the go back button, then\
@@ -32,6 +32,4 @@ export class ModalComponent implements OnInit {
   deleteAllOrders() {
     this.dataStorageService.deleteAll().catch(err => console.log(err));
   }
-
-
 }

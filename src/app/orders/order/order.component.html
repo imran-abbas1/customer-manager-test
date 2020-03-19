@@ -1,6 +1,15 @@
-<div>All Orders</div>
-<mat-divider></mat-divider>
-
+<div class="heading">Orders</div>
+<div class="row">
+  <div class="floatLeft">
+  <div class="col-md-4">
+<div class="chart-container" style="position: relative; height:200%; width:100%">
+  <canvas id="canvas"></canvas>
+</div>
+  </div>
+  </div>
+  <div class="floatRight">
+  <div class="col-md-4">
+<button mat-raised-button id="create-order" (click)="createOrder()">Add a new Order</button>
 <button mat-raised-button id="logout-button" (click)="openModal()">Delete All Orders</button>
 
 <mat-form-field>
@@ -8,33 +17,36 @@
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
 </mat-form-field>
 
-<mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource" matSort>
+<table mat-table [dataSource]="dataSource" matSort class="lessons-table mat-elevation-z8" style="float: right">
 
-  <ng-container matColumnDef="OrderId">
+  <ng-container matColumnDef="orderId">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Order Id</mat-header-cell>
     <mat-cell *matCellDef="let lesson">{{lesson.orderId}}</mat-cell>
+    <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
   </ng-container>
 
-  <ng-container matColumnDef="CustomerId">
+  <ng-container matColumnDef="email">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Customer Id</mat-header-cell>
     <mat-cell class="description-cell"
               *matCellDef="let lesson">{{lesson.email}}</mat-cell>
-
+    <mat-footer-cell *matFooterCellDef> Total </mat-footer-cell>
   </ng-container>
 
-  <ng-container matColumnDef="Amount">
+  <ng-container matColumnDef="amount">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
     <mat-cell class="duration-cell"
               *matCellDef="let lesson">{{lesson.amount}}</mat-cell>
+    <mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </mat-footer-cell>
   </ng-container>
 
-  <ng-container matColumnDef="Details">
+  <ng-container matColumnDef="details">
     <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
      <mat-cell *matCellDef="let lesson">
       <button mat-icon-button color="accent" (click)="redirectToDetails(lesson.email)">
         <mat-icon class="mat-18">system_update</mat-icon>
       </button>
      </mat-cell>
+    <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
   </ng-container>
 
   <!--<ng-container matColumnDef="Update">
@@ -46,23 +58,25 @@
     </mat-cell>
   </ng-container>-->
 
-  <ng-container matColumnDef="Delete">
+  <ng-container matColumnDef="delete">
     <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
     <mat-cell *matCellDef="let lesson">
       <button mat-icon-button color="warn" (click)="redirectToDelete(lesson.email)">
         <mat-icon class="mat-18">delete</mat-icon>
       </button>
     </mat-cell>
+    <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
 
-</mat-table>
-
-
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons ></mat-paginator>
+</table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons style="float: right"></mat-paginator>
+  </div>
+  </div>
+</div>
 <!--<div class="row">
   <div *ngFor="let order of orders">
 

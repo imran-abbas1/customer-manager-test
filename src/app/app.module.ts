@@ -49,6 +49,7 @@ import {environment} from '../environments/environment';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {ModalComponent} from './modal/modal.component';
 import {AppRoutingModule} from './app.routing.module';
+import { DoughnutComponent } from './doughnut/doughnut.component';
 
 
 
@@ -64,6 +65,7 @@ import {AppRoutingModule} from './app.routing.module';
     AuthComponent,
     LoadingspinnerComponent,
     ModalComponent,
+    DoughnutComponent
   ],
   imports: [
     BrowserModule,

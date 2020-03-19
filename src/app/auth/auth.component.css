@@ -1,0 +1,17 @@
+#heading {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.container {
+  text-align: center;
+}
+
+button {
+  text-align: center;
+  margin-top: 25px;
+
+}

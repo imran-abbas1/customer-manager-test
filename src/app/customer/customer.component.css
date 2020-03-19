@@ -6,6 +6,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 /* Float four columns side by side */
 .column {
   float: left;
@@ -15,6 +23,18 @@ body {
 
 .column searched {
   width: 35%;
+}
+
+a:hover {
+  color: red;
+}
+
+#name-link:link {
+  color: blue;
+}
+
+#name-link:visited {
+  color: red;
 }
 
 /* Remove extra left and right margins, due to padding in columns */

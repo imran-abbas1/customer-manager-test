@@ -78,7 +78,6 @@ export class AuthService {
   logout() {
     this.loggedIn.next(false);
     this.user.next(null);
-    this.router.navigate(['/about']);
     console.log('user log out');
     // localStorage.clear();
     localStorage.removeItem('userData');
@@ -86,6 +85,8 @@ export class AuthService {
       clearTimeout(this.tokenExpirationTimer);
     }
     this.tokenExpirationTimer = null;
+
+    this.router.navigate(['/login']);
   }
 
   autoLogout(expirationDuration: number) {

@@ -1,4 +1,8 @@
-RegisterForm {
-  padding-left: 50px;
-  margin: auto;
+.RegisterForm {
+  padding: 20px;
+  text-align: center;
+  margin-left: 20px;
+  border: 10px solid black;
+  background-color: powderblue;
+
 }

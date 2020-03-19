@@ -6,9 +6,11 @@
     <div *ngIf="isLoading" style="text-align: center; margin: auto">
       <app-loadingspinner></app-loadingspinner>
     </div>
+    <div class="RegisterForm">
     <form [formGroup]="registerForm"
           (ngSubmit)="register()" *ngIf="!isLoading">
       <div id="heading" style="font-weight: bold; font-size: large">Sign up Form</div>
+      <div class="container">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
       <input matInput placeholder="Enter email" formControlName="email" id="email" class="form-control" email required/>
@@ -22,10 +24,12 @@
         <mat-error *ngIf="registerForm.get('password').invalid">{{getPasswordErrorMessage()}}</mat-error>
       </mat-form-field>
         <br>
-        <div class="button" style="float: left">
+        <div class="button">
       <button mat-raised-button [disabled]="!registerForm.valid" type="submit"> {{ isLogin ? 'Login' : 'Sign Up' }}</button> |
       <button mat-raised-button type="button" (click)="onSwitchMode()">Switch to {{ isLogin ? 'Sign Up' : 'Login' }}</button>
         </div>
+      </div>
     </form>
+    </div>
   </div>
 </div>

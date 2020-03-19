@@ -33,12 +33,12 @@ export class DataStorageService {
       console.log(response);
     });
   }
-  /*storeOrders() {
-    const orders  = this.orderService.getOrders();
-    this.http.put('https://sampleproject-c0ccb.firebaseio.com/orders.json' , orders).subscribe(response => {
+
+  storeOrders(orders: any) {
+    this.http.post('https://sampleproject-c0ccb.firebaseio.com/orders.json' , orders).subscribe(response => {
       console.log(response);
     });
-  }*/
+  }
 
   fetchCustomers() {
         /*return this.http.get<Customer[]>(
@@ -64,13 +64,13 @@ export class DataStorageService {
     /*let dbb = firebase.database();
     let userRef = dbb.ref('customers/' + key);
     userRef.remove();*/
-
     return this.customersRef.remove(key);
-    console.log('delete attempted2');
+    console.log('Customer Deletion successful');
   }
 
   deleteOrder(key: string) {
     return this.ordersRef.remove(key);
+    console.log('Order Deletion successful');
   }
 
   getCustomersList(): AngularFireList<Customer> {
@@ -82,7 +82,7 @@ export class DataStorageService {
   }
 
   deleteAll(): Promise<void> {
-    return this.customersRef.remove();
+    return this.ordersRef.remove();
   }
 }
 

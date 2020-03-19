@@ -2,8 +2,8 @@ export interface Orders {
   email: string;
   orderId: number;
   amount: number;
-  key?: string;
   product: Product[];
+  key?: string;
 }
 
 export interface Product {

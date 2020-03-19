@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CustomerComponent} from './customer/customer.component';
 import {AuthGuard} from './auth/auth.guard';
+import {CustomerComponent} from './customer/customer.component';
 import {CustomerlistComponent} from './customer/customerlist/customerlist.component';
 import {CustomerdetailsComponent} from './customer/customerdetails/customerdetails.component';
 import {CustomerordersComponent} from './customer/customerorders/customerorders.component';
@@ -13,7 +13,6 @@ import {CustomersResolverService} from './services/customers-resolver.service';
 import {OrdersResolverService} from './services/orders-resolver.service';
 import {SignupModule} from './signup/signup.module';
 import {LogoutModule} from './logout/logout.module';
-
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'customer'},
@@ -33,7 +32,8 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'login', component: AuthComponent, resolve: [CustomersResolverService]},
   {path: 'logout', loadChildren: () => LogoutModule},
-  {path: 'new-customer', loadChildren: () => SignupModule, canActivate: [AuthGuard], resolve: [CustomersResolverService]}
+  {path: 'new-customer', loadChildren: () => SignupModule, canActivate: [AuthGuard], resolve: [CustomersResolverService]},
+  {path: '**', redirectTo: 'customer'}
 ];
 
 
