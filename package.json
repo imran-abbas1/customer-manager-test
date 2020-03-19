@@ -26,7 +26,7 @@
     "@angular/router": "~7.2.0",
     "@types/google-maps": "^3.2.2",
     "@types/googlemaps": "^3.39.3",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "chart.js": "^2.9.3",
     "core-js": "^2.5.4",
     "firebase": "^7.10.0",
