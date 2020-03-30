@@ -14,8 +14,12 @@ body {
   text-align: center;
   font-size: 30px;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 60px;
   margin-bottom: 20px;
+}
+.no-data-available {
+  text-align: center;
+  font-weight: bold;
 }
 /* Float four columns side by side */
 .column {
@@ -46,6 +50,10 @@ body {
 
 /* Responsive columns - one column layout (vertical) on small screens */
 @media screen and (max-width: 600px) {
+
+  .heading {
+    margin-top: 150px;
+  }
   .column {
     width: 100%;
     display: block;

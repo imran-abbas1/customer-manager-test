@@ -6,6 +6,7 @@ export interface Customer {
   city: string;
   state: string;
   phoneNumber: number;
+  imgSource: string;
   key?: string;
 }
 

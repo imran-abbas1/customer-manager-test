@@ -5,9 +5,97 @@
   margin-top: 10px;
   margin-bottom: 20px;
 }
+body {
+  overflow: hidden;
+}
+
+.content {
+  height: 50vh;
+}
 
 .header {
   text-align: center;
   margin: auto;
   padding: unset;
+  margin-top: 100px;
+}
+
+
+button {
+  float: left;
+}
+
+.sidebar {
+  width: 0px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  margin-top: 57px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: baseline;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+
+.sidebar a:hover {
+  background-color: gray;
+  background-size: contain;
+  color: #f1f1f1;
+
+}
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-width: 700px){
+
+  .sidebar{
+    width: 20%;
+    margin-top: 153px
+  }
+  .header {
+    margin: auto;
+    margin-left: 31px;
+    margin-right: 31px;
+    margin-top: 150px !important;
+    padding: unset;
+  }
 }

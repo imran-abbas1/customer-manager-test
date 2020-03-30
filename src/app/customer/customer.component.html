@@ -1,5 +1,5 @@
-<div *ngIf="route.children.length === 0">
-<mat-card>
+<div *ngIf="route.children.length === 0" style="overflow-x: hidden;">
+<mat-card style="margin-top: 48px; padding-left: 525px;">
   <mat-label class="heading" style="padding-right: 20px; font-weight: bold; font-size: larger">Customers</mat-label>
   <span style="padding-right: 20px; color: dodgerblue">
   <a style="cursor:pointer;" (click)="onAddCustomer()">New Customer</a>
@@ -20,7 +20,7 @@
         <a (click)="onClear()" style= "cursor:pointer">Clear</a></li>
         </ul>
       </mat-card>-->
-{{search}}
+<!--{{search}}-->
 
 <!--
   <h1>Customers</h1>
@@ -33,17 +33,33 @@
 -->
   <div *ngIf="isSearched">
     <div class="row">
-      <div class="column searched">
+      <div *ngFor="let searched of searchedCustomer">
+        <div class="column" *ngIf="numSearchedCustomer > 1; else notShow">
+
         <div class="card">
-          <img src="../../assets/img_avatar3.png" alt="Avatar" style="width:100%">
-          <div class="container">
-            <div>Customer Name:- {{searchedCustomer[0].fname}} {{searchedCustomer[0].lname}} </div>
-            <div>  Email:- {{searchedCustomer[0].email}} </div>
-            <div>  Address:- {{searchedCustomer[0].address}}, {{searchedCustomer[0].city}} ,{{searchedCustomer[0].state}} </div>
-            <div> Contact Number:- {{searchedCustomer[0].phoneNumber}} </div>
+          <img src="../../assets/1.png" alt="Avatar" style="width:100%">
+          <!--<img src="../../assets/1.png" height="426" width="374"/>-->
+          <div class="content">
+            <div>Customer Name:- {{searched.fname}} {{searched.lname}} </div>
+            <div>  Email:- {{searched.email}} </div>
+            <div>  Address:- {{searched.address}}, {{searched.city}} ,{{searched.state}} </div>
+            <div> Contact Number:- {{searched.phoneNumber}} </div>
           </div>
         </div>
       </div>
+        <ng-template #notShow class="column-searched">
+          <div class="card" style="margin: auto; width: 25%;">
+            <img src="../../assets/1.png" alt="Avatar" style="width:100%">
+            <!--<img src="../../assets/1.png" height="426" width="374"/>-->
+            <div class="content">
+              <div>Customer Name:- {{searched.fname}} {{searched.lname}} </div>
+              <div>  Email:- {{searched.email}} </div>
+              <div>  Address:- {{searched.address}}, {{searched.city}} ,{{searched.state}} </div>
+              <div> Contact Number:- {{searched.phoneNumber}} </div>
+            </div>
+          </div>
+        </ng-template>
+    </div>
     </div>
   </div>
   <div *ngIf="!isSearched">
@@ -56,8 +72,9 @@
 
     <div class="card">
       <a style="cursor:pointer;" id="name-link" [routerLink]="['/customer', cust.email]"><h4><b>{{cust.fname}} {{cust.lname}}</b></h4></a>
-      <img src="../../assets/img_avatar3.png" alt="Avatar" style="width:100%">
-      <div class="container">
+      <!--<img src="{{ cust.imgSource ? 'imgSource' : '../../assets/1.png' }}" alt="Avatar" style="width:100%">-->
+      <img src="../../assets/1.png" alt="Avatar" style="width:100%">
+      <div class="content">
         <div>{{cust.address}}</div>
         <div>{{cust.state}}</div>
         <a style="cursor:pointer;" id="order-link" [routerLink]="['/customer', cust.email, 'orders']"><h4><b>View Orders</b></h4></a>

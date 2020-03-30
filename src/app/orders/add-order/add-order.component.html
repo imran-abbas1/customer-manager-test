@@ -1,8 +1,8 @@
-<p>
-add-order works
-</p>
-
-<div class="AddOrderForm">
+<div class="AddOrderForm" style="margin-top: 45px; margin-left: 0px">
+  <div class="heading">
+    Add Order
+  </div>
+  <div class="modal-content">
   <form [formGroup]="addOrderForm"
         (ngSubmit)="addOrder()">
     <mat-form-field appearance="outline">
@@ -33,4 +33,4 @@ add-order works
     <button mat-raised-button [disabled]="addOrderForm.invalid">Add New Order</button>
   </form>
 </div>
-
+</div>

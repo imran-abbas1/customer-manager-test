@@ -1,17 +1,17 @@
-<div class="heading">
+<div class="heading" style="margin-top: 120px">
   Customer Orders
 </div>
-<div class="num-orders" *ngIf="!custOrder">
+<div class="num-orders" *ngIf="!custOrder" style="text-align: center">
   No Order Available for this Customer
 </div>
 
 <div class="num-orders" *ngIf="custOrder">
-  <div>Total No. of Orders for this customer {{custOrder.length}}</div>
+  <div style="text-align: center; margin-bottom: 15px !important;">Total No. of Orders for this customer {{custOrder.length}}</div>
 <div class="row">
   <div *ngFor="let customerOrder of custOrder; let i=index">
-  <div class="column">
+  <div class="column" *ngIf="custOrder.length > 1; else notShow">
     <div class="card">
-      <img src="../../assets/img_avatar3.png" alt="Avatar" style="width:50%">
+      <img src="../../assets/1.png" alt="Avatar" style="width:50%">
 <div class="cust-order">
   <div class="order-details">
     <div>Order Id- {{customerOrder.orderId}}</div>
@@ -26,6 +26,24 @@
 </div>
     </div>
   </div>
+
+    <ng-template #notShow class="column-single-element">
+      <div class="new-card" style="margin: auto;">
+        <img src="../../assets/1.png" alt="Avatar" style="width:50%">
+        <div class="cust-order">
+          <div class="order-details">
+            <div>Order Id- {{customerOrder.orderId}}</div>
+            <div> Customer Id:- {{customerOrder.email}} </div>
+            <div>Total Bill Amount- {{customerOrder.amount}}</div>
+            <mat-divider></mat-divider>
+            <div *ngFor="let products of custOrder[i].product">
+              <div>Product Name:- {{products.productName}} </div>
+              <div>Product Price:- {{products.productPrice}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>
 </div>

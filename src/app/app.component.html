@@ -1,14 +1,98 @@
-<div class="mat-tab-nav-bar">
+<div class="mat-tab-nav-bar" style="z-index: 2; overflow-x: hidden;">
   <ul>
     <li><i class="material-icons" style="font-size:40px;color:lightblue;text-shadow:2px 2px 4px #000000; padding-top: 3px; padding-left: 10px">cloud</i></li>
     <li class="brand" routerLinkActive="active"><a [routerLink]="['/customer']">Customer Manager Dashboard</a></li>
     <li routerLinkActive="active" *ngIf="isLoggedIn$ | async "><a [routerLink]="['/customer']">Customer</a></li>
     <li routerLinkActive="active"  *ngIf="isLoggedIn$ | async "><a [routerLink]="['/order']">Order</a></li>
     <li><a [routerLink]="['/about']" routerLinkActive="active">About</a></li>
-    <!--{{isAuthenticated}}-->
-    <li class="signinClass" routerLinkActive="active" *ngIf="(!isAuthenticated)"><a [routerLink]="['/login']">Sign In</a></li>
-    <li class="usernameClass" routerLinkActive="active" *ngIf="isLoggedIn$ | async " style="padding-right: 15px;"><a></a> {{username}}</li>
-    <li class="logoutClass" routerLinkActive="active" *ngIf="isLoggedIn$ | async "><a [routerLink]="['/logout']">Log out</a></li>
+    <li><a [routerLink]="['/blog']" routerLinkActive="active">Blog</a></li>
+    <!--{{isAuthenticated}}
+-->   <!-- <li class="signinClass" routerLinkActive="active" *ngIf="(!isAuthenticated)"><a [routerLink]="['/login']">Sign In</a></li>-->
+    <li class="usernameClass" routerLinkActive="active" *ngIf="isLoggedIn$ | async "
+        style="padding-right: 30px;
+        padding-left: 15px;
+        margin-top: -13px;"><a></a> {{username}}</li>
+    <li class="authenticate" style="background-color: #afb0ae">
+      <mat-form-field color="warn">
+        <mat-label>Authenticate</mat-label>
+        <mat-select [(ngModel)]="choosenOption" (ngModelChange)="authenticate()">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let opt of options" [value]="opt">{{opt}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </li>
   </ul>
 </div>
+<div class="sidebar"
+     [style.width.px]="width"
+     (mouseenter)="openSidebar()"
+     (mouseleave)="closeSidebar()"
+>
+     <!--[style.marginRight.px]="marginLeft"-->
+  <div class="sidebar-header">
+    <a class="close-btn" (click)="closeSidebar()">×</a>
+    <a class="active" routerLink="/customer"><i class="fa fa-home" style="margin: 10px;"></i>Home</a>
+    <a routerLink="/order"><i class="fa fa-globe" style="margin: 10px;"></i>Order</a>
+    <a routerLink="blog"><i class="fa fa-envelope" style="margin: 10px;"></i>Blog</a>
+    <a routerLink="about"><i class="fa fa-trash" style="margin: 10px;"></i>About</a>
+    <a class="dropdown-btn" (click)="onDropdownOpen()"  style="margin: 10px; cursor: pointer;"><i class="fa fa-caret-down"></i>Services Offered
+    </a>
+    <div class="dropdown-container">
+      <a [routerLink]="['/customer', 's.binny@gmail.com']"> Stuart Account </a>
+      <a [routerLink]="['/customer', 's.binny@gmail.com', 'orders']">Stuart Orders</a>
+      <a [routerLink]="['/privacy-policy']">Privacy Policy</a>
+    </div>
+  </div>
+</div>
+
+<div class="rightbar">
+
+</div>
 <router-outlet></router-outlet>
+
+<div style="margin-top: 20px;
+    height: 5px;
+    background: black; overflow-x: hidden;"></div>
+
+<div style="background-color: black; color: white;">
+<div style="overflow-x: hidden; padding-left: 40px; padding-bottom: 20px; padding-top: 10px;">
+  <div class="col-sm-3" style="text-align: center;">
+  <h2 id="company-name">Customer Manager</h2>
+    <h4 id="about-us">About us</h4>
+  <div id="about-content">
+    This website allows to show the customer details and their orders.
+    Along with orders statistics.
+  </div>
+  </div>
+  <div class="col-sm-3 helpful-links" style="text-align: center;">
+  <h4>Helpful Links</h4>
+    <div id="feedback-heading"> <a routerLink="feedback">Feedback </a></div>
+    <div id="privacy-heading"> <a routerLink="privacy-policy">Privacy Policy </a></div>
+    <div id="terms-heading"> <a routerLink="terms-conditions">Terms & Condition </a></div>
+  </div>
+  <div class="col-sm-3 information-links" style="text-align: center;">
+  <h4>Information</h4>
+    <div id="blog-heading"> <a routerLink="blog">Blog </a></div>
+    <div id="order-heading"> <a routerLink="order">Orders </a></div>
+    <div id="about-heading"> <a routerLink="about">About us</a></div>
+    <div id="customer-heading"> <a routerLink="customer">Customers </a></div>
+  </div>
+  <div class="col-sm-3 social-header" style="text-align: center;">
+    <h4>Contact Us</h4>
+    <div id="contact-us" style="margin: 10px;">
+      <img src="../assets/viber.png" style="width: 10%; background-color: white;"/> <a href="tel:+918888888888">+91-8888888888</a>
+      <img src="../assets/email.png" style="width: 10%;"/>
+      <a href="mailto:support@customermanager.com" style="text-decoration: underline !important;">support@customermanager.com</a>
+    </div>
+    <div id="social-links">
+      <a href="https://www.facebook.com"> <img src="../assets/facebook.png"  style="width: 15%; padding-right: 10px;"/> </a>
+      <a href="https://www.instagram.com"> <img src="../assets/instagram.png" style="width: 15%; padding-right: 10px;"/> </a>
+      <a href="https://www.twitter.com"> <img src="../assets/twitter.png" style="width: 15%; padding-right: 10px;"/> </a>
+      <a href="https://www.youtube.com"> <img src="../assets/youtube.png" style="width: 15%; padding-right: 10px;"/> </a>
+      <a href="https://www.whatsapp.com"> <img src="../assets/whatsapp.png" style="width: 10%;"/> </a>
+    </div>
+  </div>
+</div>
+ <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/catkuro" title="catkuro">catkuro</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+ -->
+</div>

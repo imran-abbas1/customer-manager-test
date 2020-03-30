@@ -14,10 +14,13 @@
 <div class="heading">
   Customer Details
 </div>
-<div class="container">
+<div class="no-data-available" *ngIf="!cust">
+  No Detail about this customer available right now. !
+</div>
+<div class="container" *ngIf="cust">
 <div class="card">
-  <img src="../../../assets/img_avatar3.png" alt="Avatar" style="width:80%">
-  <div class="container">
+  <img src="../../../assets/1.png" alt="Avatar" style="width:80%">
+  <div class="content">
     <div> {{cust.fname}} {{cust.lname}} </div>
     <div>  Email:- {{cust.email}} </div>
     <div>  Address:- {{cust.address}}, {{cust.city}} ,{{cust.state}} </div>

@@ -4,10 +4,11 @@ import {Routes, RouterModule} from '@angular/router';
 import {AddOrderComponent} from './add-order/add-order.component';
 const routes: Routes = [
   {
-    path: '', component: OrderComponent
-  },
-  {
-    path: 'add-order', component: AddOrderComponent
+    path: '', component: OrderComponent, children: [
+      {
+        path: 'add-order', component: AddOrderComponent
+      }
+    ]
   }
 ];
 

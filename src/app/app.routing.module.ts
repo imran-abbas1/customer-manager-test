@@ -8,6 +8,10 @@ import {CustomerordersComponent} from './customer/customerorders/customerorders.
 import {EditcustomerComponent} from './customer/editcustomer/editcustomer.component';
 import {AboutComponent} from './about/about.component';
 import {AuthComponent} from './auth/auth.component';
+import {TermsndConditionComponent} from './Pages/Footer/t&c.component';
+import {BlogComponent} from './Pages/Footer/blog.component';
+import {FeedbackComponent} from './Pages/Footer/feedback.component';
+import {PrivacypolicyComponent} from './Pages/Footer/privacypolicy.component';
 import {OrdersModule} from './orders/orders.module';
 import {CustomersResolverService} from './services/customers-resolver.service';
 import {OrdersResolverService} from './services/orders-resolver.service';
@@ -15,7 +19,7 @@ import {SignupModule} from './signup/signup.module';
 import {LogoutModule} from './logout/logout.module';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'customer'},
+  {path: '', pathMatch: 'full', redirectTo: 'blog'},
   {path: 'customer', component: CustomerComponent, canActivate: [AuthGuard], resolve: [CustomersResolverService],
     children: [
       {path: ':id', component: CustomerlistComponent,
@@ -33,7 +37,11 @@ const routes: Routes = [
   {path: 'login', component: AuthComponent, resolve: [CustomersResolverService]},
   {path: 'logout', loadChildren: () => LogoutModule},
   {path: 'new-customer', loadChildren: () => SignupModule, canActivate: [AuthGuard], resolve: [CustomersResolverService]},
-  {path: '**', redirectTo: 'customer'}
+  {path: 'terms-conditions', component: TermsndConditionComponent},
+  {path: 'privacy-policy', component: PrivacypolicyComponent},
+  {path: 'feedback', component: FeedbackComponent},
+  {path: 'blog', component: BlogComponent}/*,
+  {path: '**', redirectTo: 'customer'}*/
 ];
 
 

@@ -34,6 +34,7 @@ main {
 
 .navbar {
   position: fixed;
+  float: right;
   background-color: var(--bg-primary);
   transition: width 600ms ease;
 }
@@ -43,7 +44,7 @@ main {
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   height: 100%;
 }
@@ -127,11 +128,15 @@ main {
 
 /* Small screens */
 @media only screen and (max-width: 600px) {
+  nav {
+    margin: 9px;
+  }
   .navbar {
-    top: 10;
+    top: 90px;
     width: 100vw;
     height: 5rem;
   }
+
 
   .logo {
     display: none;
@@ -147,14 +152,6 @@ main {
 
   main {
     margin: 0;
-  }
-}
-
-/* Large screens */
-@media only screen and (min-width: 600px) {
-  .navbar {
-    width: 5rem;
-    height: 100vh;
   }
 
   .navbar:hover {

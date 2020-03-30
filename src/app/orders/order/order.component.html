@@ -1,22 +1,131 @@
-<div class="heading">Orders</div>
-<div class="row">
+<div class="orders">
+<div class="heading" style="margin-top: 75px">Orders</div>
+<div class="row" style="margin: auto;">
   <div class="floatLeft">
-  <div class="col-md-4">
-<div class="chart-container" style="position: relative; height:200%; width:100%">
+      <!--<div class="revenue-progress-bar" style="width: 25%; margin-left: 25px;">
+        Test
+        <mat-progress-bar class="clients-target" [color]="color"
+                          mode="determinate"
+                          [value]="numCust*10"
+                          [bufferValue]="bufferValue">
+    </mat-progress-bar>
+      </div>-->
+
+<div class="chart-container" style="position: relative; height:125%; width:100%; z-index: -1;">
   <canvas id="canvas"></canvas>
 </div>
+    <div class="myprogress-bar" style="display: flex;">
+  <div class="clients-progress-bar" style="
+    width: 25%;
+    margin: auto;
+    float: left;
+    margin-left: 25px;">
+    Clients Target
+    <mat-progress-bar class="clients-target" [color]="color"
+                      mode="determinate"
+                      [value]="numCust"
+                      [bufferValue]="bufferValue*11"
+                      style="z-index: -1;">
+    </mat-progress-bar>
   </div>
+    <div class="revenue-progress-bar" style="width: 25%; margin: auto;">
+      Revenue Target
+      <mat-progress-bar class="clients-target" [color]="color"
+                        mode="determinate"
+                        [value]="totalRevenue/10000"
+                        [bufferValue]="bufferValue*11"
+                        style="z-index: -1;">
+      </mat-progress-bar>
+    </div>
+
+    <div class="product-progress-bar" style="width: 25%; margin: auto;">
+      Product Target
+      <mat-progress-bar class="clients-target" [color]="color"
+                        mode="determinate"
+                        [value]="totalProducts"
+                        [bufferValue]="bufferValue*11"
+                        style="z-index: -1;">
+      </mat-progress-bar>
+    </div>
+  </div>
+    <div class="new-row">
+      <div class="col-lg-6 col-xl-4">
+        <div class="new-card mb-3 widget-content bg-night-fade">
+          <div class="widget-content-wrapper text-white">
+            <div class="widget-content-left">
+              <div class="widget-heading">
+                Total Orders
+              </div>
+              <div class="widget-subheading">
+              </div>
+            </div>
+            <div class="widget-content-right">
+              <span>{{numOrders}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-4">
+        <div class="new-card mb-3 widget-content bg-night-fade">
+          <div class="widget-content-wrapper text-white">
+            <div class="widget-content-left">
+              <div class="widget-heading">
+                Products Sold
+              </div>
+            </div>
+            <div class="widget-content-right">
+              <span>{{totalProducts}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="new-row">
+      <div class="col-lg-6 col-xl-4">
+        <div class="new-card mb-3 widget-content bg-night-fade">
+          <div class="widget-content-wrapper text-white">
+            <div class="widget-content-left">
+              <div class="widget-heading">
+                Clients
+              </div>
+            </div>
+            <div class="widget-content-right">
+              <span>{{numCust}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-xl-4">
+        <div class="new-card mb-3 widget-content bg-night-fade">
+          <div class="widget-content-wrapper text-white">
+            <div class="widget-content-left">
+              <div class="widget-heading">
+                Total Revenue
+              </div>
+            </div>
+            <div class="widget-content-right">
+              <span>{{totalRevenue}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
   <div class="floatRight">
-  <div class="col-md-4">
-<button mat-raised-button id="create-order" (click)="createOrder()">Add a new Order</button>
-<button mat-raised-button id="logout-button" (click)="openModal()">Delete All Orders</button>
+  <button mat-raised-button id="create-order" (click)="createOrder()" style="margin-top: 20px">Add a new Order</button>
+<button mat-raised-button id="logout-button" (click)="openModal()" style="margin-top: 20px">Delete All Orders</button>
 
+<div class="filter">
 <mat-form-field>
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
 </mat-form-field>
-
+</div>
 <table mat-table [dataSource]="dataSource" matSort class="lessons-table mat-elevation-z8" style="float: right">
 
   <ng-container matColumnDef="orderId">
@@ -36,7 +145,7 @@
     <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
     <mat-cell class="duration-cell"
               *matCellDef="let lesson">{{lesson.amount}}</mat-cell>
-    <mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </mat-footer-cell>
+    <mat-footer-cell *matFooterCellDef>{{totalRevenue}}</mat-footer-cell>
   </ng-container>
 
   <ng-container matColumnDef="details">

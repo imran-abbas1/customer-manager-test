@@ -1,4 +1,18 @@
-<div class="header">
+<!--<div class="about-us" style="overflow: hidden;">
+<div class="sidebar"
+     [style.width.px]="width">
+  <div class="sidebar-header">
+    <button (click)="openSidebar()">☰ </button>
+  <a class="close-btn" (click)="closeSidebar()">×</a>
+  <a class="active" routerLink="/customer"><i class="fa fa-home" style="margin: 10px;"></i>Home</a>
+  <a routerLink="/order"><i class="fa fa-globe" style="margin: 10px;"></i>Order</a>
+  <a routerLink="contact"><i class="fa fa-envelope" style="margin: 10px;"></i>Contact</a>
+  <a routerLink="about"><i class="fa fa-trash" style="margin: 10px;"></i>About</a>
+</div>
+</div>
+<div class="header" [style.marginLeft.px]="marginLeft">--><!--
+  <button (click)="openSidebar()">☰ {{ flag ? 'Close Sidebar' : 'Open Sidebar' }}</button>-->
+<div class="header" style="overflow: hidden;">
   <h2 class="heading"><b>Customer Manager</b></h2>
   <div class="content">
     <h3>Customer Manager is to manage Customers and check their details with the orders Placed </h3>

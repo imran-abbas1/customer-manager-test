@@ -1,7 +1,59 @@
-* {
-  box-sizing: border-box;
+canvas {
+  margin-bottom: 30px;
+}
+.new-row {
+display: flex;
+flex-wrap: wrap;
+  float: left;
+  width: 125%;
+  text-align: center;
+  align-items: center;
+  justify-content: center
 }
 
+.col-lg-6 {
+  position: relative;
+  width: 25%;
+  padding-top: 10px;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+.widget-content {
+  padding: 1rem;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bg-night-fade {
+  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%) !important;
+}
+
+.new-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.widget-content-wrapper {
+  display: flex;
+  flex: 1;
+  position: relative;
+  align-items: center;
+}
+.widget-heading {
+opacity: .8;
+font-weight: bold;
+}
+.widget-content-right {
+  margin-left: 40px;
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -11,6 +63,10 @@ body {
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 20px;
+}
+
+.filter {
+  margin-left: 40px;
 }
 
 /*
@@ -41,13 +97,16 @@ body {
 */
 
 .floatLeft {
-  width: 50%; float: left;
+  width: 45%; float: left;
+  margin-left: 30px;
 
 
 }
 .floatRight {
-  width: 50%;
+  width: 47%;
   float: right;
+  margin-right: 50px;
+
 }
 .container { overflow: hidden; }
 
@@ -69,14 +128,57 @@ table {
 
 /* Responsive columns - one column layout (vertical) on small screens */
 @media screen and (max-width: 600px) {
-  .column,  floatRight {
+
+  .orders {
+    position: unset !important;
+  }
+
+  .heading {
+    margin-top: 150px !important;
+  }
+
+  .sidebar {
+    width: 20px !important;
+  }
+
+  .new-card {
+    z-index: -1;
+  }
+
+  .new-row {
+    width: 95%;
+  }
+  .column {
     width: 100%;
     display: block;
     margin-bottom: 20px;
   }
+  .myprogress-bar {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 92%;
+  }
+
+  .col-lg-6 {
+    width: 80%;
+    margin: auto;
+  }
+
+  .floatRight {
+    width: 78%;
+  }
+  .filter {
+    margin-left: 0px;
+  }
 
   .floatLeft {
-    width: 100%;
+    width: 95%;
     height: 60%;
+    margin-left: 20px;
+  }
+  table {
+    margin-left: 5px;
+    float: none !important;
   }
 }

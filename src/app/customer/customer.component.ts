@@ -22,6 +22,8 @@ export class CustomerComponent implements OnInit {
   isSearched = false;
   searchedCustomer: any;
   count: number;
+  numCustomers: number;
+  numSearchedCustomer: number;
   // customers: any;
 //  dataSource: MatTableDataSource<User[]>;
  // displayedColumns: string[] = ['fname', 'lname', 'address', 'city', 'state', 'ordertotal'];
@@ -73,7 +75,9 @@ export class CustomerComponent implements OnInit {
     if (item !== '') {
       this.isSearched = true;
       this.searchedCustomer = this.currentCustomers.filter(cust => cust.fname === item || cust.lname === item);
+      this.numSearchedCustomer = this.searchedCustomer.length;
       console.log(this.searchedCustomer);
+      console.log(this.numSearchedCustomer);
     }
   }
   onClear() {
@@ -94,9 +98,15 @@ export class CustomerComponent implements OnInit {
       this.currentCustomers = customers;
       console.log(this.currentCustomers);
       this.custService.setCustomers(this.currentCustomers);
+      this.calc();
       this.count = this.orderService.countOrders;
       // console.log(this.custService.getCustomers());
     });
+  }
+
+  calc() {
+    this.numCustomers = this.currentCustomers.length;
+    this.custService.countCustomer = this.numCustomers;
   }
 
   deleteCustomers() {

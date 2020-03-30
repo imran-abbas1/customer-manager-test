@@ -7,10 +7,12 @@ import {map} from 'rxjs/operators';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {ModalComponent} from '../../modal/modal.component';
 import {MatDialogConfig} from '@angular/material/dialog';
+import {CustService} from '../../services/custservice.service';
+import {ThemePalette} from '@angular/material';
 // import { ModalComponent } from '/modal/modal.component';
 
 @Component({
@@ -24,7 +26,18 @@ export class OrderComponent implements OnInit, AfterViewInit {
   customersId = [];
   orderAmount = [];
   chart = [];
+  myProducts = [];
+  color: ThemePalette = 'primary';
+  value = 0;
+  bufferValue = 0;
+
+  totalProducts = 0;
+  sumPro = [];
+  totalRevenue = 0;
   type = 'bar';
+  numOrders: number;
+  numCust: number;
+  numProducts: number;
 
   /*
   dataSource: any;*/
@@ -32,7 +45,8 @@ export class OrderComponent implements OnInit, AfterViewInit {
   displayedColumns = ['orderId', 'email', 'amount', 'details', 'delete'];
 
   constructor(private orderService: OrderService, private dataStorageService: DataStorageService,
-              private router: Router, private matDialog: MatDialog) {
+              private router: Router, private matDialog: MatDialog, private custService: CustService,
+              private route: ActivatedRoute) {
     this.dataSource = new MatTableDataSource(this.orders);
   }
   @ViewChild(MatSort) sort: MatSort;
@@ -74,6 +88,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
     ).subscribe(allorders => {
       // this.custService.setCustomers(customers);
       this.orders = allorders;
+      this.numOrders = this.orders.length;
       console.log(this.orders);
       this.orderService.setOrders(this.orders);
       this.dataSource = new MatTableDataSource(this.orders);
@@ -87,11 +102,23 @@ export class OrderComponent implements OnInit, AfterViewInit {
   showDoughnutGraph() {
     console.log(this.orders.length);
     for (let i = 0; i < this.orders.length; i++) {
-      this.orderAmount.push(this.orders[i].amount);
+      this.orderAmount.push(Number(this.orders[i].amount));
       this.customersId.push(this.orders[i].email);
+      this.myProducts.push(this.orders[i].product);
     }
     console.log(this.orderAmount);
     console.log(this.customersId);
+    for (let i = 0; i < this.myProducts.length; i++) {
+      this.sumPro.push(this.myProducts[i].length);
+    }
+    console.log(this.sumPro);
+    this.totalProducts = this.sumPro.reduce((prev, cur) => prev + cur, 0);
+    this.totalRevenue = this.orderAmount.reduce((prev, cur) => prev + cur, 0);
+    const distinct = (value, index, self) => {
+      return self.indexOf(value) === index;
+    };
+    const distinctUsers = this.customersId.filter(distinct);
+    this.numCust = distinctUsers.length;
     this.chart = new Chart('canvas', {
       type: this.type,
       data: {
@@ -193,13 +220,16 @@ export class OrderComponent implements OnInit, AfterViewInit {
     const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
   }
 
-  getTotalCost() {
-    /*
-    return this.orders.reduce((prev, curr) => prev + curr.amount, 0);*/
-    return this.orders.map(t => t.amount).reduce((acc, value) => acc + value, 0);
-  }
+
 
   createOrder() {
-    this.router.navigate(['/add-order']);
+    /*
+    window.scrollBy({
+      top: 0,
+      left: 1000,
+      behavior: 'smooth'
+    });*/
+    this.router.navigate(['add-order'], { relativeTo: this.route });
+    // window.scroll('bottom');
   }
 }

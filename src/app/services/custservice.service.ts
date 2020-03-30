@@ -58,6 +58,7 @@ export class CustService {
   ];*/
   customerChanged = new Subject<Customer[]>();
   selectedCustomer: any;
+  countCustomer: number;
   index: number;
 
   constructor() {
@@ -99,6 +100,14 @@ export class CustService {
 
   get SelectedCustomer() {
     return this.selectedCustomer;
+  }
+
+  set CountCustomer(value) {
+    this.countCustomer = value;
+  }
+
+  get CountCustomer() {
+    return this.countCustomer;
   }
 
 }

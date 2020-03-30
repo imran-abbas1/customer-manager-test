@@ -8,6 +8,7 @@ import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 import * as firebase from 'firebase';
 import {Customer} from '../customer.model';
 import {AuthService} from '../auth/auth.service';
+import {Feedback} from '../feedback.model';
 
 
 @Injectable({
@@ -17,15 +18,17 @@ export class DataStorageService {
 
   private dbCustPath = '/customers';
   private dbOrdPath = '/orders';
+  private dbFeedPath = '/feedback';
 
   customersRef: AngularFireList<Customer> = null;
   ordersRef: AngularFireList<Orders> = null;
+  feedbackRef: AngularFireList<Feedback> = null;
 
   constructor(private custService: CustService, private orderService: OrderService, private http: HttpClient,
               private authService: AuthService, private db: AngularFireDatabase) {
     this.customersRef = db.list(this.dbCustPath);
     this.ordersRef = db.list(this.dbOrdPath);
-    console.log('constructor reached');
+    this.feedbackRef = db.list(this.dbFeedPath);
   }
 
   storeCustomers(customers: any) {
@@ -40,6 +43,12 @@ export class DataStorageService {
     });
   }
 
+  storeFeedback(feedback: any) {
+    this.http.post('https://sampleproject-c0ccb.firebaseio.com/feedback.json', feedback).subscribe(response => {
+      console.log(response);
+    });
+  }
+
   fetchCustomers() {
         /*return this.http.get<Customer[]>(
           'https://sampleproject-c0ccb.firebaseio.com/customers.json');
@@ -50,6 +59,10 @@ export class DataStorageService {
   fetchOrders() {
         return this.http.get<Orders[]>(
           'https://sampleproject-c0ccb.firebaseio.com/orders.json');
+      }
+
+      fetchFeedback() {
+    this.getFeedbackList();
       }
 
   updateCustomer(key: string, value: any): Promise<void> {
@@ -79,6 +92,10 @@ export class DataStorageService {
 
   getOrdersList(): AngularFireList<Orders> {
     return this.ordersRef;
+  }
+
+  getFeedbackList(): AngularFireList<Feedback> {
+    return this.feedbackRef;
   }
 
   deleteAll(): Promise<void> {
